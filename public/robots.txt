@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://butfirstcoffee.com.br/sitemap.xml
