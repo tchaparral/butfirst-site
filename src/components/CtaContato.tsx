@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import brancoLogo from "@/../public/branco_logotipo.svg";
 
 export default function CtaContato() {
   const [email, setEmail] = useState("");
+  const [routine, setRoutine] = useState("");
   const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -34,7 +34,7 @@ export default function CtaContato() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, consent, sessionId }),
+        body: JSON.stringify({ email, routine, consent, sessionId }),
       });
       const data = await res.json();
 
@@ -44,6 +44,7 @@ export default function CtaContato() {
 
       setSuccessOpen(true);
       setEmail("");
+      setRoutine("");
       setConsent(false);
     } catch (err: any) {
       setErrorMsg(err?.message || "Erro ao cadastrar. Tente novamente.");
@@ -53,45 +54,53 @@ export default function CtaContato() {
   }
 
   return (
-    <section id="contato" className="bg-[#1C1C1C] text-white py-16 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Texto institucional */}
-        <div className="grid grid-cols-1">
-          <Image
-            src={brancoLogo}
-            alt="Logo B1st"
-            className="mx-auto h-1/2 mb-4 w-30"
-            priority
-          />
-          <p className="text-sm text-gray-300 text-center md:text-left">
-            A B1st é especialista em automação, bots e soluções com inteligência artificial.
-            Nosso compromisso é transformar tarefas manuais em operações escaláveis e inteligentes.
+    <section id="contato" className="relative py-20 px-6 text-white overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src="/cta-contato.png"
+        alt="Fundo contato"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        width={1200}
+        height={600}
+      />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/70 z-10"></div>
+
+      <div className="relative z-20 max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F7F3EA]">
+            Onde sua operação está perdendo tempo?
+          </h2>
+          <p className="text-lg text-[#B8B0A3] max-w-3xl mx-auto">
+            Conte onde existe retrabalho, tarefa manual ou ferramenta desconectada. A gente ajuda a encontrar um primeiro caminho simples para organizar e automatizar.
           </p>
         </div>
 
         {/* Formulário */}
-        <div>
-          <h3 className="font-bold text-lg mb-4 text-center md:text-left">
-            Fale com a gente
-          </h3>
-          <p className="text-sm text-gray-300 mb-4 text-center md:text-left">
-            Cadastre-se para saber mais sobre nossas soluções, ou contate a gente pelo WhatsApp ou Instagram.
-          </p>
-
+        <div className="max-w-md mx-auto bg-[#111315]/90 backdrop-blur-sm rounded-xl p-8 border border-[#F59A23]/20">
           <form className="space-y-4" onSubmit={onSubmit} noValidate>
             <input
               type="email"
               placeholder="Digite seu e-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg text-black bg-white"
+              className="w-full px-4 py-3 rounded-lg text-black bg-white border-0 focus:ring-2 focus:ring-[#F59A23]"
               required
             />
 
-            <label className="text-sm flex items-start gap-2">
+            <input
+              type="text"
+              placeholder="Qual rotina mais toma tempo hoje? (opcional)"
+              value={routine}
+              onChange={(e) => setRoutine(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg text-black bg-white border-0 focus:ring-2 focus:ring-[#F59A23]"
+            />
+
+            <label className="text-sm flex items-start gap-2 text-[#B8B0A3]">
               <input
                 type="checkbox"
-                className="mt-1"
+                className="mt-1 accent-[#F59A23]"
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
                 required
@@ -100,15 +109,15 @@ export default function CtaContato() {
             </label>
 
             {errorMsg && (
-              <div className="text-sm text-pink-400">{errorMsg}</div>
+              <div className="text-sm text-red-400">{errorMsg}</div>
             )}
 
             <button
               type="submit"
               disabled={loading || !isValidEmail(email) || !consent}
-              className="bg-[#FF005C] hover:bg-pink-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2 px-6 rounded-xl w-full md:w-auto transition"
+              className="bg-[#F59A23] hover:bg-[#E0851D] disabled:opacity-60 disabled:cursor-not-allowed text-black font-bold py-3 px-6 rounded-lg w-full transition-colors"
             >
-              {loading ? "Cadastrando..." : "CADASTRAR"}
+              {loading ? "Enviando..." : "Quero diagnosticar minha operação"}
             </button>
           </form>
         </div>
@@ -117,14 +126,14 @@ export default function CtaContato() {
       {/* Pop-up de sucesso */}
       {successOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-          <div className="bg-white text-[#1C1C1C] rounded-2xl p-6 max-w-md w-full shadow-xl">
-            <h4 className="text-lg font-bold mb-2">Cadastro feito! 🎉</h4>
-            <p className="text-sm text-gray-700">
-              Seu e-mail foi registrado na nossa lista. Em breve você recebe novidades da B1st.
+          <div className="bg-[#111315] text-[#F7F3EA] rounded-2xl p-6 max-w-md w-full shadow-xl border border-[#F59A23]/20">
+            <h4 className="text-lg font-bold mb-2">Mensagem enviada! 🎉</h4>
+            <p className="text-sm text-[#B8B0A3]">
+              Recebemos seu contato. Em breve retornamos com uma proposta personalizada.
             </p>
             <button
               onClick={() => setSuccessOpen(false)}
-              className="mt-4 bg-[#3031A3] hover:opacity-90 text-white font-semibold py-2 px-4 rounded-xl w-full"
+              className="mt-4 bg-[#F59A23] hover:bg-[#E0851D] text-black font-semibold py-2 px-4 rounded-lg w-full transition-colors"
             >
               Fechar
             </button>

@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    const { email, consent, sessionId } = await req.json();
+    const { email, routine, consent, sessionId } = await req.json();
 
     if (!email || typeof email !== "string") {
       return NextResponse.json({ ok: false, message: "E-mail inválido." }, { status: 400 });
@@ -26,13 +26,14 @@ export async function POST(req: Request) {
     const values = [[
       new Date().toISOString(),   // A: timestamp
       email.trim(),               // B: e-mail
-      "yes",                      // C: consent
-      sessionId || ""             // D: session id (opcional)
+      routine || "",              // C: routine (opcional)
+      "yes",                      // D: consent
+      sessionId || ""             // E: session id (opcional)
     ]];
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEETS_ID!,
-      range: process.env.GOOGLE_SHEETS_RANGE || "emails!A:D",
+      range: process.env.GOOGLE_SHEETS_RANGE || "emails!A:E",
       valueInputOption: "USER_ENTERED",
       requestBody: { values },
     });

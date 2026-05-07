@@ -4,26 +4,26 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1C1C1C] text-white py-10 px-6 text-center text-sm border-t border-gray-700 ">
+    <footer className="bg-[#050605] text-[#F7F3EA] py-10 px-6 text-center border-t border-[#F59A23]/20">
       <p>&copy; 2025 But First Coffee. Todos os direitos reservados.</p>
-      <p className="mt-2 text-gray-400">
+      <p className="mt-2 text-[#B8B0A3]">
         Identidade visual por{" "}
-        <a href="http://fandmworks.com" target="_blank" rel="noopener noreferrer" className="underline">
+        <a href="http://fandmworks.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#F59A23] transition-colors">
           fandmworks
         </a>
       </p>
-      <p className="mt-2 text-xs text-gray-500">Desenvolvido por B1st Dev Crew ☕</p>
-      <div className="mt-6 pt-6 space-x-4 text-gray-400 text-sm flex flex-wrap justify-center gap-4">
-        <a href="#sobre" className="hover:text-white transition-colors">
+      <p className="mt-2 text-xs text-[#B8B0A3]">Desenvolvido por B1st Dev Crew ☕</p>
+      <div className="mt-6 pt-6 space-x-4 text-[#B8B0A3] text-sm flex flex-wrap justify-center gap-4 border-t border-[#F59A23]/20">
+        <a href="#sobre" className="hover:text-[#F59A23] transition-colors">
           Sobre nós
         </a>
-        <a href="/politica-de-privacidade" className="hover:text-white transition-colors">
+        <a href="/politica-de-privacidade" className="hover:text-[#F59A23] transition-colors">
           Política de Privacidade
         </a>
-        <a href="/termos-de-uso" className="hover:text-white transition-colors">
+        <a href="/termos-de-uso" className="hover:text-[#F59A23] transition-colors">
           Termos de Uso
         </a>
-        <a href="#contato" className="hover:text-white transition-colors">
+        <a href="#contato" className="hover:text-[#F59A23] transition-colors">
           Contato
         </a>
       </div>
