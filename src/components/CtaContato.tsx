@@ -60,8 +60,7 @@ export default function CtaContato() {
         src="/cta-contato.png"
         alt="Fundo contato"
         className="absolute inset-0 w-full h-full object-cover z-0"
-        width={1200}
-        height={600}
+        fill
       />
 
       {/* Overlay */}

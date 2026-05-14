@@ -20,33 +20,34 @@ export default function IAPratica() {
         </div>
 
         {/* Grid imagem + cards */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-8">
+        <div className="mb-8 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Imagem */}
-          <div className="flex justify-center">
+          <div className="relative min-h-[22rem] overflow-hidden rounded-xl border border-[#F59A23]/20 bg-[#111315] sm:min-h-[28rem] lg:min-h-0">
             <Image
-              src="/ia-coffee-robot.png"
-              alt="Automação e Machine Learning"
-              className="max-h-[460px] object-contain rounded-xl"
-              placeholder="blur"
+              src="/ia-contexto-operacional.png"
+              alt="Fluxo operacional com IA contextual, dados e automação"
+              className="object-cover"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               priority
             />
           </div>
 
           {/* Cards */}
           <div className="grid gap-6">
-            <div className="bg-[#111315] p-8 rounded-xl border border-[#F59A23]/20 hover:border-[#F59A23]/40 transition-all">
+            <div className="flex min-h-[9.5rem] flex-col justify-center rounded-xl border border-[#F59A23]/20 bg-[#111315] p-8 transition-all hover:border-[#F59A23]/40">
               <h3 className="font-semibold text-[#F7F3EA] mb-2">Atendimento automático</h3>
               <p className="text-sm text-[#B8B0A3]">
                 Bots que entendem o que o cliente quer, respondem com contexto e liberam sua equipe para o que importa.
               </p>
             </div>
-            <div className="bg-[#111315] p-8 rounded-xl border border-[#F59A23]/20 hover:border-[#F59A23]/40 transition-all">
+            <div className="flex min-h-[9.5rem] flex-col justify-center rounded-xl border border-[#F59A23]/20 bg-[#111315] p-8 transition-all hover:border-[#F59A23]/40">
               <h3 className="font-semibold text-[#F7F3EA] mb-2">Geração de conteúdo</h3>
               <p className="text-sm text-[#B8B0A3]">
                 Automatize respostas, propostas, mensagens e textos com linguagem natural e personalizada.
               </p>
             </div>
-            <div className="bg-[#111315] p-8 rounded-xl border border-[#F59A23]/20 hover:border-[#F59A23]/40 transition-all">
+            <div className="flex min-h-[9.5rem] flex-col justify-center rounded-xl border border-[#F59A23]/20 bg-[#111315] p-8 transition-all hover:border-[#F59A23]/40">
               <h3 className="font-semibold text-[#F7F3EA] mb-2">Tomada de decisão</h3>
               <p className="text-sm text-[#B8B0A3]">
                 Análise de dados, classificação de leads, priorização de tarefas — tudo orientado por IA.

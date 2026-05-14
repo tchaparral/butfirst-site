@@ -53,6 +53,14 @@ export const metadata = {
   alternates: {
     canonical: "https://b1stcoffee.site"
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-256.png", type: "image/png", sizes: "256x256" },
+    ],
+    apple: [{ url: "/favicon-180.png", type: "image/png", sizes: "180x180" }],
+  },
   robots: { index: true, follow: true }
 };
 
